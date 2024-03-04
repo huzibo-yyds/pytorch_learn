@@ -13,21 +13,20 @@ kernel = torch.tensor([[1, 2, 1],
                        [2, 1, 0]])
 
 print(input.shape)  # torch.Size([5, 5])
-print(kernel.shape) # torch.Size([3, 3])
+print(kernel.shape)  # torch.Size([3, 3])
 
 input = torch.reshape(input, (1, 1, 5, 5))
 kernel = torch.reshape(kernel, (1, 1, 3, 3))
 # reshape作用：改变张量的形状（shape），以适应卷积操作的输入要求
-print(input) # 4维？
+print(input)  # 4维？
 print(kernel)
 
-ouput=m.conv2d(input,kernel,stride=1)
+ouput = m.conv2d(input, kernel, stride=1)
 print(ouput)
-ouput=m.conv2d(input,kernel,stride=2)
+ouput = m.conv2d(input, kernel, stride=2)
 print(ouput)
-ouput=m.conv2d(input,kernel,stride=1,padding=1)
+ouput = m.conv2d(input, kernel, stride=1, padding=1)
 print(ouput)
-
 
 """conv2d参数说明
 torch.nn.functional.conv2d(input, weight, bias=None, stride=1, padding=0, dilation=1, groups=1) 
@@ -35,7 +34,6 @@ torch.nn.functional.conv2d(input, weight, bias=None, stride=1, padding=0, dilati
     + stride 卷据和的步幅，可以是单数字，或元组（分别表示横向，纵向）
     + stride 填充
 """
-
 
 # With square kernels and equal stride
 filters = torch.randn(8, 4, 3, 3)
