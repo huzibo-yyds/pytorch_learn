@@ -1,10 +1,5 @@
 import torch
 import torchvision
-# input = torch.tensor([[1, -0.5],
-#                       [-1, 3]])
-#
-# input = torch.reshape(input, (-1, 1, 2, 2))
-# print(input.shape)
 from torch import nn
 from torch.nn import ReLU, Sigmoid
 from torch.utils.data import DataLoader
