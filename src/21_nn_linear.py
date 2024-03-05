@@ -40,3 +40,6 @@ for data in dataloader:
     output = mynn(output)
     # torch.Size([10])
     print(output.shape)
+
+""""linear layer
+"""
