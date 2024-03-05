@@ -13,3 +13,11 @@
 如何确定卷积层padding参数
 
 ![shape-of-conv2d](img/shape-of-conv2d.png)
+
+
+
+
+
+# 23_loss
+
+损失函数，简言之，计算预测结果与实际标签之间的差异
