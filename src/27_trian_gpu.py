@@ -3,9 +3,10 @@ import torch.optim
 import torchvision.datasets
 from torch.utils.data import DataLoader
 from torch.utils.tensorboard import SummaryWriter
-
+import time
 from model import *
 
+time_start = time.time()
 device = torch.device("cuda")
 
 # dataset
@@ -30,7 +31,7 @@ test_dataloader = DataLoader(test_data, batch_size=64)
 model = Mynn().to(device)
 
 # loss_function
-loss_fun = nn.CrossEntropyLoss()
+loss_fun = nn.CrossEntropyLoss().to(device)
 
 # optimizer
 learning_rate = 1e-2
@@ -38,7 +39,7 @@ optimizer = torch.optim.SGD(model.parameters(), lr=learning_rate)
 
 total_train_step = 0
 # total_test_step = 0
-epoch = 100
+epoch = 20
 writer = SummaryWriter("../log/27_train_gpu")
 
 for i in range(epoch):
@@ -66,14 +67,14 @@ for i in range(epoch):
     model.eval()  # 将模型设为评估模式
     total_test_loss = 0
     total_accuracy = 0
-    with torch.no_grad(): # 不会浪费计算资源跟踪梯度grad
+    with torch.no_grad():  # 不会浪费计算资源跟踪梯度grad
         for data in test_dataloader:
             imgs, targets = data[0].to(device), data[1].to(device)
             outputs = model(imgs)
             loss = loss_fun(outputs, targets)
 
             total_test_loss = total_test_loss + loss.item()
-            accuracy = (outputs.argmax(1) == targets).sum() # argmax(1) 返回样本预测最大值的索引 参数表示方向
+            accuracy = (outputs.argmax(1) == targets).sum()  # argmax(1) 返回样本预测最大值的索引 参数表示方向
             total_accuracy = total_accuracy + accuracy
 
     print("整体测试集loss：{}".format(total_test_loss))
@@ -87,3 +88,7 @@ for i in range(epoch):
         print("模型 {} 已保存".format(i + 1))
 
 writer.close()
+time_end = time.time()
+print(time_end - time_start)
+# GPU time: 169.50026726722717
+# CPU time: 507.9097261428833
