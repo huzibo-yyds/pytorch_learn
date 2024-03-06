@@ -34,6 +34,12 @@
 
 # 25
 
+UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use '**<u>weights</u>**' instead.
+  warnings.warn
+
+UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=VGG16_Weights.IMAGENET1K_V1`. You can also use `weights=VGG16_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+
 
 
 
@@ -90,3 +96,12 @@ VGG(
 
 
 
+# 26_save_load
+
+将模型（网络模型）保存，加载
+
+
+
+1. 【方式1】直接保存模型结构+模型参数
+2. 【方式2】只保存模型参数（官方推荐）
+   load使用
