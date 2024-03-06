@@ -33,10 +33,15 @@ class Mynn(nn.Module):
         return output
 
 
+# 1  无法多GPU并行训练
+# print(torch.cuda.device_count())
+
 # 将模型移动到 GPU 上
 mynn = Mynn().to(device)
+# if torch.cuda.device_count()>1
+
 loss = nn.CrossEntropyLoss()
-optim = torch.optim.SGD(mynn.parameters(), lr=0.01)
+optim = torch.optim.SGD(mynn.parameters(), lr=0.001)
 
 for epoch in range(20):
     running_loss = 0.0
