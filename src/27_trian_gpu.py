@@ -7,7 +7,7 @@ import time
 from model import *
 
 time_start = time.time()
-device = torch.device("cuda")
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # dataset
 train_data = torchvision.datasets.CIFAR10(root="../data/dataset_CIFAR10",
